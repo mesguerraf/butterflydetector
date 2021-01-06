@@ -109,6 +109,7 @@ class Trainer(object):
             data = data.to(self.device, non_blocking=True)
             targets = [[t.to(self.device, non_blocking=True) for t in head] for head in targets]
 
+
         # train encoder
         with torch.autograd.profiler.record_function('model'):
             outputs = self.model(data)

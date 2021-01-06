@@ -2,6 +2,7 @@ from PIL import Image
 
 from .uavdt import UAVDT
 from .visdrone import VisDrone
+from .coco import Coco
 import torch.utils.data
 
 def collate_images_anns_meta(batch):
@@ -20,6 +21,7 @@ def collate_images_targets_meta(batch):
 dataset_list = {
     'uavdt': UAVDT,
     'visdrone': VisDrone,
+    'coco': Coco
 }
 
 class ImageList(torch.utils.data.Dataset):
@@ -46,7 +48,7 @@ class ImageList(torch.utils.data.Dataset):
 
 def cli(parser):
     group = parser.add_argument_group('dataset and loader')
-    group.add_argument('--dataset', type=str, default='uavdt',
+    group.add_argument('--dataset', type=str, default='coco',
                         choices=dataset_list.keys())
     group.add_argument('--train-annotations', default=None)
     group.add_argument('--train-image-dir', default=None)
