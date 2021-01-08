@@ -88,14 +88,24 @@ def dataset_factory(args, preprocess, target_transforms, test_mode=False, collat
         target_transforms=target_transforms,
         n_images=args.n_images,
     )
+    if args.dataset =='coco':
+        val_data = dataset(
+            root=args.val_image_dir or dataset.val_image_dir,
+            annFile=args.val_annotations or dataset.val_annotations,
+            preprocess=preprocess,
+            target_transforms=target_transforms,
+            n_images=args.n_images,
+            image_filter='all'
+        )
+    else:
+        val_data = dataset(
+            root=args.val_image_dir or dataset.val_image_dir,
+            annFile=args.val_annotations or dataset.val_annotations,
+            preprocess=preprocess,
+            target_transforms=target_transforms,
+            n_images=args.n_images,
+        )
 
-    val_data = dataset(
-        root=args.val_image_dir or dataset.val_image_dir,
-        annFile=args.val_annotations or dataset.val_annotations,
-        preprocess=preprocess,
-        target_transforms=target_transforms,
-        n_images=args.n_images,
-    )
 
     pre_train_data = dataset(
         root=args.train_image_dir or dataset.train_image_dir,

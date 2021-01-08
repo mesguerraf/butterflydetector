@@ -32,7 +32,7 @@ class Coco(torch.utils.data.Dataset):
     def __init__(self, root, annFile, *, target_transforms=None,
                  n_images=None, preprocess=None,
                  category_ids=None,
-                 image_filter='all'):
+                 image_filter='keypoint-annotations'):
         if category_ids is None:
             category_ids = [1]
 
