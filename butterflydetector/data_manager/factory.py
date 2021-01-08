@@ -77,6 +77,7 @@ def dataset_factory(args, preprocess, target_transforms, test_mode=False, collat
                 annFile=dataset.test_path[args.dataset_split][1],
                 preprocess=preprocess,
                 n_images=args.n_images,
+                image_filter='all'
             )
         else:
             data = dataset(

@@ -57,7 +57,7 @@ def cli():
     parser.add_argument('--update-batchnorm-runningstatistics',
                         default=False, action='store_true',
                         help='update batch norm running statistics')
-    parser.add_argument('--square-edge', default=640, type=int,
+    parser.add_argument('--square-edge', default=641, type=int,
                         help='square edge of input images')
     parser.add_argument('--ema', default=1e-3, type=float,
                         help='ema decay constant')

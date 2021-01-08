@@ -62,7 +62,7 @@ def cli():
                         help='Set Soft-NMS threshold to remove')
     parser.add_argument('--nms-threshold', default=0.5, type=float,
                         help='Set NMS overlap threshold to remove')
-    parser.add_argument('--dataset', type=str, default=None,
+    parser.add_argument('--dataset', type=str, default='coco',
                         choices=dataset_list.keys())
     parser.add_argument('--label', default=False, action='store_true',
                         help='show text label')
