@@ -71,12 +71,20 @@ def cli(parser):
 def dataset_factory(args, preprocess, target_transforms, test_mode=False, collate_fn=None):
     dataset = dataset_list[args.dataset]
     if test_mode:
-        data = dataset(
-            root=dataset.test_path[args.dataset_split],
-            annFile=None,
-            preprocess=preprocess,
-            n_images=args.n_images,
-        )
+        if args.dataset == 'coco':
+            data = dataset(
+                root=dataset.test_path[args.dataset_split][0],
+                annFile=dataset.test_path[args.dataset_split][1],
+                preprocess=preprocess,
+                n_images=args.n_images,
+            )
+        else:
+            data = dataset(
+                root=dataset.test_path[args.dataset_split],
+                annFile=None,
+                preprocess=preprocess,
+                n_images=args.n_images,
+            )
         return torch.utils.data.DataLoader(
             data, batch_size=args.batch_size, pin_memory=args.pin_memory,
             num_workers=args.loader_workers, collate_fn=collate_fn)

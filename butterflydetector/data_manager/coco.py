@@ -25,7 +25,8 @@ class Coco(torch.utils.data.Dataset):
     val_image_dir = '../datasets/coolingTowersV3/images/val/'
     train_annotations = '../datasets/coolingTowersV3/images/annotations/instances_train_butterfly.json'
     val_annotations = '../datasets/coolingTowersV3/images/annotations/instances_val_butterfly.json'
-    test_path = {'val': '../datasets/coolingTowersV3/images/val/'}
+    test_path = {'val': ['../datasets/coolingTowersV3/images/val/',
+                        '../datasets/coolingTowersV3/images/annotations/instances_val_butterfly.json']}
 
 
 
@@ -179,3 +180,16 @@ class Coco(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.ids)
+
+    def write_evaluations(self, eval_class, path, total_time):
+        for folder in eval_class.dict_folder.keys():
+            utils.mkdir_if_missing(path)
+            with open(os.path.join(path,folder+".txt"), "w") as file:
+                file.write("\n".join(eval_class.dict_folder[folder]))
+        n_images = len(eval_class.image_ids)
+
+        print('n images = {}'.format(n_images))
+        print('decoder time = {:.1f}s ({:.0f}ms / image)'
+              ''.format(eval_class.decoder_time, 1000 * eval_class.decoder_time / n_images))
+        print('total time = {:.1f}s ({:.0f}ms / image)'
+              ''.format(total_time, 1000 * total_time / n_images))
