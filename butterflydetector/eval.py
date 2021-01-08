@@ -116,6 +116,8 @@ class EvalAerial(object):
         elif self.args.dataset == "uavdt":
             folder = split_fileName[-2]
             image_numb = int(split_fileName[-1][3:9])
+        elif self.args.dataset == "coco":
+            folder = os.path.splitext(fileName)[0]
         else:
             raise
 
@@ -130,7 +132,7 @@ class EvalAerial(object):
         for categ in bboxes.keys():
             for bbox in np.array(bboxes[categ]):
                 x, y, w, h, s = bbox
-                if self.args.dataset == "visdrone":
+                if self.args.dataset == "visdrone" or self.args.dataset == "coco":
                     self.dict_folder[folder].append(",".join(list(map(str,[x, y, w, h, s, categ+1, -1, -1]))))
                 elif self.args.dataset == "uavdt":
                     self.dict_folder[folder].append(",".join(list(map(str,[image_numb, -1, x, y, w, h, s, 1, categ]))))
