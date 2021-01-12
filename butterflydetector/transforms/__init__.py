@@ -33,6 +33,13 @@ EVAL_TRANSFORM = Compose([
     ),
 ])
 
+PREDICT_TRANSFORM = Compose([
+    NormalizeAnnotations(),
+    RescaleAbsolute(641),
+    CenterPad(641),
+    EVAL_TRANSFORM,
+])
+
 
 TRAIN_TRANSFORM = Compose([
     NormalizeAnnotations(),
