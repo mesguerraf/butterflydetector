@@ -35,10 +35,17 @@ EVAL_TRANSFORM = Compose([
 
 PREDICT_TRANSFORM = Compose([
     NormalizeAnnotations(),
-    RescaleAbsolute(641),
-    CenterPad(641),
+    RescaleAbsolute(512),
+    CenterPad(512),
     EVAL_TRANSFORM,
 ])
+def predict_transform(square_edge=512):
+    return Compose([
+        NormalizeAnnotations(),
+        RescaleAbsolute(square_edge),
+        CenterPad(square_edge),
+        EVAL_TRANSFORM,
+    ])
 
 
 TRAIN_TRANSFORM = Compose([
