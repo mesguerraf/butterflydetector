@@ -23,10 +23,10 @@ class Coco(torch.utils.data.Dataset):
     """
     train_image_dir = '../datasets/coolingTowersV3/images/train/'
     val_image_dir = '../datasets/coolingTowersV3/images/val/'
-    train_annotations = '../datasets/coolingTowersV3/images/annotations/instances_train_butterfly.json'
-    val_annotations = '../datasets/coolingTowersV3/images/annotations/instances_val_butterfly.json'
+    train_annotations = '../datasets/coolingTowersV3/images/annotations/instances_train.json'
+    val_annotations = '../datasets/coolingTowersV3/images/annotations/instances_val.json'
     test_path = {'val': ['../datasets/coolingTowersV3/images/val/',
-                        '../datasets/coolingTowersV3/images/annotations/instances_val_butterfly.json']}
+                        '../datasets/coolingTowersV3/images/annotations/instances_val.json']}
 
 
 
