@@ -23,13 +23,15 @@ from .random import RandomApply
 from .rotate import RotateBy90
 from .scale import RescaleAbsolute, RescaleRelative, ResizeAbsolute, RescaleWH
 
+mean = [0.3470, 0.3371, 0.3029]
+std = [0.2138, 0.2029, 0.1984]
 
 EVAL_TRANSFORM = Compose([
     NormalizeAnnotations(),
     ImageTransform(torchvision.transforms.ToTensor()),
     ImageTransform(
-        torchvision.transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                                         std=[0.229, 0.224, 0.225]),
+        torchvision.transforms.Normalize(mean=mean,
+                                         std=std),
     ),
 ])
 
