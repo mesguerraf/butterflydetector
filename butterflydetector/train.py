@@ -59,7 +59,7 @@ def cli():
                         help='update batch norm running statistics')
     parser.add_argument('--square-edge', default=641, type=int,
                         help='square edge of input images')
-    parser.add_argument('--ema', default=1e-3, type=float,
+    parser.add_argument('--ema', default=None, type=float,
                         help='ema decay constant')
     parser.add_argument('--disable-cuda', action='store_true',
                         help='disable CUDA')
